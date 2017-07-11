@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:700|Neuton" rel="stylesheet" type="text/css">
+    <style>
+        body {
+            font: 400 1em/1.5 "Neuton";
+            background: #090d00;
+            color: rgba(255, 255, 255, .25);
+            text-align: center;
+            margin: 0
+        }
+        
+        p {
+            text-transform: uppercase;
+            letter-spacing: .5em;
+            display: inline-block;
+            border: 4px double rgba(255, 255, 255, .25);
+            border-width: 4px 0;
+            padding: 1.5em 0em;
+            position: absolute;
+            top: 18%;
+            left: 50%;
+            width: 40em;
+            margin: 0 0 0 -20em;
+        }
+        
+        p span {
+            font: 700 4em/1 "Oswald", sans-serif;
+            letter-spacing: 0;
+            padding: .25em 0 .325em;
+            display: block;
+            margin: 0 auto;
+            text-shadow: 0 0 80px rgba(255, 255, 255, .5);
+            /* Clip Background Image */
+            background: url(https://f.cl.ly/items/010q3E1u3p2Q0j1L1S1o/animated_text_fill.png) repeat-y;
+            -webkit-background-clip: text;
+            /* Animate Background Image */
+            -webkit-text-fill-color: transparent;
+            -webkit-animation: aitf 0.5s linear infinite;
+            /* Activate hardware acceleration for smoother animations */
+            /*-webkit-transform: translate3d(0,0,0);*/
+            -webkit-backface-visibility: hidden;
+            transition: 1s;
+        }
+        div{
+            min-width: 30px;
+            max-width: 50px;
+            display: inline-block;
+            transition: 1s;
+            opacity: 0;
+            transform-origin: 50% 50% 0px;
+            transform: matrix3d(1.5, 0, 0, 0, 0, 1.5, 
+            0, 0, 0,
+            0, 1, 0,
+            0, 17.6498, 0, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <p><span></span></p></body>
+<script>
+    $(function(){
+        var sentence = "Animated text fill"
+        var span = $("span");
+        var arr= sentence.split("");
+        
+        arr.forEach(function(elem,i,arr){
+            var newDiv= $("<div>");
+            newDiv.html(elem)
+            span.append(newDiv);
+            setTimeout(function(){
+                newDiv.css({
+                "text-shadow": "0 0 1px rgba(255, 255, 255, .5)", "opacity": "1","transform-origin": "0% 0% 0px",
+                    "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)"
+            })
+            },i==0? 35: i*35+35);
+            
+            console.log(newDiv);
+        })
+        
+    });
+</script>
+</html>
